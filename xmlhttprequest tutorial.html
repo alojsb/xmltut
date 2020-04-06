@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tutorial</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+
+        //  how to read JSON data in 4 easy steps, using XMLHttp
+
+        // 1: Create an array of objects.
+        var myArray = [
+            {
+                "display": "JavaScript Tutorial",
+                "url": "https://www.w3schools.com/js/default.asp"
+                },
+                {
+                "display": "HTML Tutorial",
+                "url": "https://www.w3schools.com/html/default.asp"
+                },
+                {
+                "display": "CSS Tutorial",
+                "url": "https://www.w3schools.com/css/default.asp"
+            }
+        ];
+
+        // 2: Create a JavaScript function to display the array
+        function myFunction(arr) {
+            var out = "";
+            var i;
+            for(i = 0; i < arr.length; i++) {
+                out += '<a href="' + arr[i].url + '">' + arr[i].display + '</a><br>';
+            }
+            document.getElementById("id01").innerHTML = out;
+        }
+
+        // 3: Create a text file (put this inside .txt file in the same folder)
+        // [
+        // {
+        // "display": "HTML Tutorial",
+        // "url": "https://www.w3schools.com/html/default.asp"
+        // },
+        // {
+        // "display": "CSS Tutorial",
+        // "url": "https://www.w3schools.com/css/default.asp"
+        // },
+        // {
+        // "display": "JavaScript Tutorial",
+        // "url": "https://www.w3schools.com/js/default.asp"
+        // },
+        // {
+        // "display": "jQuery Tutorial",
+        // "url": "https://www.w3schools.com/jquery/default.asp"
+        // },
+        // {
+        // "display": "SQL Tutorial",
+        // "url": "https://www.w3schools.com/sql/default.asp"
+        // },
+        // {
+        // "display": "PHP Tutorial",
+        // "url": "https://www.w3schools.com/php/default.asp"
+        // },
+        // {
+        // "display": "XML Tutorial",
+        // "url": "https://www.w3schools.com/xml/default.asp"
+        // }
+        // ]
+
+        // 4: Read the text file with an XMLHttpRequest
+        var xmlhttp = new XMLHttpRequest();
+        var url = "https://github.com/alojsb/xmltut/blob/master/myTutorials.txt";
+
+        xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var myArr = JSON.parse(this.responseText);
+            myFunction(myArr);
+            }
+        };
+
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+
+
+    </script>
+</body>
+</html>
